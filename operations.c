@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
@@ -139,7 +139,7 @@ int loadFromFileCompactSimple(Social_Network* NOTES, int* n_count, int max_size,
             loaded_count++;
         }
         else {
-            printf("Ошибка чтения записи %d\n", i + 1);;
+            printf("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ Р·Р°РїРёСЃРё %d\n", i + 1);;
             break;
         }
     }
@@ -154,32 +154,32 @@ int loadFromFileCompactSimple(Social_Network* NOTES, int* n_count, int max_size,
 void show_search_results(Social_Network* NOTES, int* found_count) {
 
     for (int number = 0; number < *found_count; number++) {
-        printf("\n--- Найдена запись %d ---\n", number + 1);
-        printf("Имя: %s\n", NOTES[number].name);
-        printf("Возраст: %.1f\n", NOTES[number].age);
-        printf("Количество друзей: %d\n", NOTES[number].friends);
-        printf("Город: %s\n", NOTES[number].city);
-        printf("Статус: %s\n", NOTES[number].status == ONLINE ? "Онлайн" : "Оффлайн");
-        printf("Дата регистрации: %02d.%02d.%d\n",
+        printf("\n--- РќР°Р№РґРµРЅР° Р·Р°РїРёСЃСЊ %d ---\n", number + 1);
+        printf("РРјСЏ: %s\n", NOTES[number].name);
+        printf("Р’РѕР·СЂР°СЃС‚: %.1f\n", NOTES[number].age);
+        printf("РљРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№: %d\n", NOTES[number].friends);
+        printf("Р“РѕСЂРѕРґ: %s\n", NOTES[number].city);
+        printf("РЎС‚Р°С‚СѓСЃ: %s\n", NOTES[number].status == ONLINE ? "РћРЅР»Р°Р№РЅ" : "РћС„С„Р»Р°Р№РЅ");
+        printf("Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё: %02d.%02d.%d\n",
             NOTES[number].date.day, NOTES[number].date.month, NOTES[number].date.year);
 
-        printf("Интересы: ");
+        printf("РРЅС‚РµСЂРµСЃС‹: ");
         int has_interests = 0;
         for (int j = 0; j < 3; j++) {
             if (NOTES[number].interests[j] >= 0) {
                 if (has_interests != 0) printf(", ");
                 switch (NOTES[number].interests[j]) {
-                case SPORT: printf("Спорт"); break;
-                case ANIMALS: printf("Животные"); break;
-                case FILMS: printf("Фильмы"); break;
-                case ART: printf("Искусство"); break;
-                case CELEBRITIES: printf("Знаменитости"); break;
-                case COOKING: printf("Кулинария"); break;
+                case SPORT: printf("РЎРїРѕСЂС‚"); break;
+                case ANIMALS: printf("Р–РёРІРѕС‚РЅС‹Рµ"); break;
+                case FILMS: printf("Р¤РёР»СЊРјС‹"); break;
+                case ART: printf("РСЃРєСѓСЃСЃС‚РІРѕ"); break;
+                case CELEBRITIES: printf("Р—РЅР°РјРµРЅРёС‚РѕСЃС‚Рё"); break;
+                case COOKING: printf("РљСѓР»РёРЅР°СЂРёСЏ"); break;
                 }
                 has_interests = 1;
             }
         }
-        if (has_interests == 0) printf("Интересы отсутствуют");
+        if (has_interests == 0) printf("РРЅС‚РµСЂРµСЃС‹ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚");
         printf("\n");
     }
 }
@@ -193,14 +193,14 @@ Social_Network* single_search(Social_Network* NOTES, int n_count, char* city, in
     }
 
     if (*found_count == 0) {
-        printf("Записей из города '%s' не найдено.\n", city);
+        printf("Р—Р°РїРёСЃРµР№ РёР· РіРѕСЂРѕРґР° '%s' РЅРµ РЅР°Р№РґРµРЅРѕ.\n", city);
         return NULL;
     }
     else {
-        printf("Всего найдено записей: %d\n", *found_count);
+        printf("Р’СЃРµРіРѕ РЅР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№: %d\n", *found_count);
         Social_Network* singlfound_n = (Social_Network*)(malloc(*found_count * sizeof(Social_Network)));
         if (singlfound_n == NULL) {
-            printf("Ошибка выделения памяти для массива найденых записей!");
+            printf("РћС€РёР±РєР° РІС‹РґРµР»РµРЅРёСЏ РїР°РјСЏС‚Рё РґР»СЏ РјР°СЃСЃРёРІР° РЅР°Р№РґРµРЅС‹С… Р·Р°РїРёСЃРµР№!");
             return -1;
         }
 
@@ -233,14 +233,14 @@ Social_Network* comb_search(Social_Network* NOTES, int n_count, int age, int int
     }
 
     if (*found_count == 0) {
-        printf("Пользователей с возрастом %d и указанным интересом не найдено.\n", age);
+        printf("РџРѕР»СЊР·РѕРІР°С‚РµР»РµР№ СЃ РІРѕР·СЂР°СЃС‚РѕРј %d Рё СѓРєР°Р·Р°РЅРЅС‹Рј РёРЅС‚РµСЂРµСЃРѕРј РЅРµ РЅР°Р№РґРµРЅРѕ.\n", age);
         return NULL;
     }
     else {
-        printf("Всего найдено записей: %d\n", *found_count);
+        printf("Р’СЃРµРіРѕ РЅР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№: %d\n", *found_count);
         Social_Network* combfound_n = (Social_Network*)malloc(*found_count * sizeof(Social_Network));
         if (combfound_n == NULL) {
-            printf("Ошибка выделения памяти для массива найденных записей!");
+            printf("РћС€РёР±РєР° РІС‹РґРµР»РµРЅРёСЏ РїР°РјСЏС‚Рё РґР»СЏ РјР°СЃСЃРёРІР° РЅР°Р№РґРµРЅРЅС‹С… Р·Р°РїРёСЃРµР№!");
             return NULL;
         }
 
@@ -277,9 +277,9 @@ void test_fill(Social_Network* NOTES, int size) {
 
     for (int i = 0; i < size; i++) {
 
-        char* names[6] = { "Алина ", "Галина ", "Максим ", "Тамара ", "Данил ", "Мария " };
-        char* sernames[6] = { "Московская", "Кузнецова", "Петров", "Иванова", "Семенова", "Степашкин", };
-        char* cities[6] = { "Москва", "Санкт-Петербург", "Воронеж", "Екатеринбург", "Казань", "Ростов-на-Дону", };
+        char* names[6] = { "РђР»РёРЅР° ", "Р“Р°Р»РёРЅР° ", "РњР°РєСЃРёРј ", "РўР°РјР°СЂР° ", "Р”Р°РЅРёР» ", "РњР°СЂРёСЏ " };
+        char* sernames[6] = { "РњРѕСЃРєРѕРІСЃРєР°СЏ", "РљСѓР·РЅРµС†РѕРІР°", "РџРµС‚СЂРѕРІ", "РРІР°РЅРѕРІР°", "РЎРµРјРµРЅРѕРІР°", "РЎС‚РµРїР°С€РєРёРЅ", };
+        char* cities[6] = { "РњРѕСЃРєРІР°", "РЎР°РЅРєС‚-РџРµС‚РµСЂР±СѓСЂРі", "Р’РѕСЂРѕРЅРµР¶", "Р•РєР°С‚РµСЂРёРЅР±СѓСЂРі", "РљР°Р·Р°РЅСЊ", "Р РѕСЃС‚РѕРІ-РЅР°-Р”РѕРЅСѓ", };
         int ind1 = rand() % 6, ind2 = rand() % 6, ind = rand() % 6;
 
         strcpy(NOTES[i].name, names[ind1]);

@@ -1,28 +1,28 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h> 
 #include "social_network.h"
 
 
 int Menu() {
-    printf("\n     ===================== УПРАВЛЕНИЕ БАЗОЙ ДАННЫХ ====================");
-    printf("\n            ================== СОЦИАЛЬНЫЕ СЕТИ ==================");
-    printf("\n\n1. Просмотреть все записи");
-    printf("\n2. Добавить новую запись");
-    printf("\n3. Перезаписать существующую запись");
-    printf("\n4. Поиск записи по городу");
-    printf("\n5. Поиск записи по возрасту и интересам");
-    printf("\n6. Отсортировать данные по следующему приоритету:");
-    printf("\n  1) Дата регистрации (по убыванию)");
-    printf("\n  2) Количество друзей");
-    printf("\n  3) Статус активности");
-    printf("\n7. Сохранить данные в файл");
-    printf("\n8. Загрузить данные из файла");
-    printf("\n9. Заполнить базу тестовыми значениями");
-    printf("\n0. Выход\n\n");
+    printf("\n     ===================== РЈРџР РђР’Р›Р•РќРР• Р‘РђР—РћР™ Р”РђРќРќР«РҐ ====================");
+    printf("\n            ================== РЎРћР¦РРђР›Р¬РќР«Р• РЎР•РўР ==================");
+    printf("\n\n1. РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµ Р·Р°РїРёСЃРё");
+    printf("\n2. Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ");
+    printf("\n3. РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ СЃСѓС‰РµСЃС‚РІСѓСЋС‰СѓСЋ Р·Р°РїРёСЃСЊ");
+    printf("\n4. РџРѕРёСЃРє Р·Р°РїРёСЃРё РїРѕ РіРѕСЂРѕРґСѓ");
+    printf("\n5. РџРѕРёСЃРє Р·Р°РїРёСЃРё РїРѕ РІРѕР·СЂР°СЃС‚Сѓ Рё РёРЅС‚РµСЂРµСЃР°Рј");
+    printf("\n6. РћС‚СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ РґР°РЅРЅС‹Рµ РїРѕ СЃР»РµРґСѓСЋС‰РµРјСѓ РїСЂРёРѕСЂРёС‚РµС‚Сѓ:");
+    printf("\n  1) Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё (РїРѕ СѓР±С‹РІР°РЅРёСЋ)");
+    printf("\n  2) РљРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№");
+    printf("\n  3) РЎС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё");
+    printf("\n7. РЎРѕС…СЂР°РЅРёС‚СЊ РґР°РЅРЅС‹Рµ РІ С„Р°Р№Р»");
+    printf("\n8. Р—Р°РіСЂСѓР·РёС‚СЊ РґР°РЅРЅС‹Рµ РёР· С„Р°Р№Р»Р°");
+    printf("\n9. Р—Р°РїРѕР»РЅРёС‚СЊ Р±Р°Р·Сѓ С‚РµСЃС‚РѕРІС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё");
+    printf("\n0. Р’С‹С…РѕРґ\n\n");
 
     int number;
-    printf("Выбирите функцию (0-7): ");
+    printf("Р’С‹Р±РёСЂРёС‚Рµ С„СѓРЅРєС†РёСЋ (0-7): ");
     scanf("%d", &number);
     while (getchar() != '\n');
 
@@ -35,34 +35,34 @@ int Menu() {
 
 void show_Note(Social_Network* NOTES, int i) {
 
-    printf("\n--- Запись %d ---\n", i + 1);
-    printf("\n   --- ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ ---\n");
-    printf("Имя: %s\n", NOTES[i].name);
-    printf("Возраст: %.1f\n", NOTES[i].age);
-    printf("Интересы: ");
+    printf("\n--- Р—Р°РїРёСЃСЊ %d ---\n", i + 1);
+    printf("\n   --- РРќР¤РћР РњРђР¦РРЇ Рћ РџРћР›Р¬Р—РћР’РђРўР•Р›Р• ---\n");
+    printf("РРјСЏ: %s\n", NOTES[i].name);
+    printf("Р’РѕР·СЂР°СЃС‚: %.1f\n", NOTES[i].age);
+    printf("РРЅС‚РµСЂРµСЃС‹: ");
     int has_interests = 0;
     for (int j = 0; j < 3; j++) {
         if (NOTES[i].interests[j] >= 0 && NOTES[i].interests[j] <= 5) {
             if (has_interests != 0) printf(", ");
             switch (NOTES[i].interests[j]) {
-            case SPORT: printf("Спорт"); break;
-            case ANIMALS: printf("Животные"); break;
-            case FILMS: printf("Фильмы"); break;
-            case ART: printf("Искусство"); break;
-            case CELEBRITIES: printf("Знаменитости"); break;
-            case COOKING: printf("Кулинария"); break;
-            default: printf("Было записано неизвестное значение");
+            case SPORT: printf("РЎРїРѕСЂС‚"); break;
+            case ANIMALS: printf("Р–РёРІРѕС‚РЅС‹Рµ"); break;
+            case FILMS: printf("Р¤РёР»СЊРјС‹"); break;
+            case ART: printf("РСЃРєСѓСЃСЃС‚РІРѕ"); break;
+            case CELEBRITIES: printf("Р—РЅР°РјРµРЅРёС‚РѕСЃС‚Рё"); break;
+            case COOKING: printf("РљСѓР»РёРЅР°СЂРёСЏ"); break;
+            default: printf("Р‘С‹Р»Рѕ Р·Р°РїРёСЃР°РЅРѕ РЅРµРёР·РІРµСЃС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ");
             }
             has_interests = 1;
         }
     }
-    if (has_interests == 0) printf("Интересы отсутствуют");
+    if (has_interests == 0) printf("РРЅС‚РµСЂРµСЃС‹ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚");
     printf("\n");
 
-    printf("Дата регистрации: %02d.%02d.%d\n", NOTES[i].date.day, NOTES[i].date.month, NOTES[i].date.year);
-    printf("Количество друзей: %d\n", NOTES[i].friends);
-    printf("Город: %s\n", NOTES[i].city);
-    printf("Статус: %s\n", NOTES[i].status == ONLINE ? "Онлайн" : "Оффлайн");
+    printf("Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё: %02d.%02d.%d\n", NOTES[i].date.day, NOTES[i].date.month, NOTES[i].date.year);
+    printf("РљРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№: %d\n", NOTES[i].friends);
+    printf("Р“РѕСЂРѕРґ: %s\n", NOTES[i].city);
+    printf("РЎС‚Р°С‚СѓСЃ: %s\n", NOTES[i].status == ONLINE ? "РћРЅР»Р°Р№РЅ" : "РћС„С„Р»Р°Р№РЅ");
     printf("====================================\n");
 }
 
@@ -74,31 +74,31 @@ char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake) {
 
     int mis = 0;
 
-    printf("\n                     --- ДОБАВЛЕНИЕ НОВОЙ ЗАПИСИ ---\n\n");
+    printf("\n                     --- Р”РћР‘РђР’Р›Р•РќРР• РќРћР’РћР™ Р—РђРџРРЎР ---\n\n");
 
-    printf("~~ Введите имя пользователя: ");
+    printf("~~ Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: ");
     fgets(NOTES[n_count].name, sizeof(NOTES[n_count].name), stdin);
     int len = strlen(NOTES[n_count].name);
     if (len > 0 && NOTES[n_count].name[len - 1] == '\n') {
         NOTES[n_count].name[len - 1] = '\0';
     }
 
-    printf("\n~~ Введите возраст: ");
+    printf("\n~~ Р’РІРµРґРёС‚Рµ РІРѕР·СЂР°СЃС‚: ");
     if (scanf("%f", &NOTES[n_count].age) != 1 || NOTES[n_count].age < 0) {
-        strcpy(mistake, "\nВНИМАЕНИЕ: Допущена ошибка в поле 'Возраст'!\n");
+        strcpy(mistake, "\nР’РќРРњРђР•РќРР•: Р”РѕРїСѓС‰РµРЅР° РѕС€РёР±РєР° РІ РїРѕР»Рµ 'Р’РѕР·СЂР°СЃС‚'!\n");
         mis = 1;
     }
     while (getchar() != '\n');
 
 
-    printf("\n~~ Выберите до трёх интересов:\n");
-    printf("0 - СПОРТ\n1 - ЖИВОТНЫЕ\n2 - ФИЛЬМЫ\n3 - ИСКУССТВО\n");
-    printf("4 - ЗНАМЕНИТОСТИ\n5 - КУЛИНАРИЯ\n6 - ЗАВЕРШИТЬ ВВОД\n\n");
+    printf("\n~~ Р’С‹Р±РµСЂРёС‚Рµ РґРѕ С‚СЂС‘С… РёРЅС‚РµСЂРµСЃРѕРІ:\n");
+    printf("0 - РЎРџРћР Рў\n1 - Р–РР’РћРўРќР«Р•\n2 - Р¤РР›Р¬РњР«\n3 - РРЎРљРЈРЎРЎРўР’Рћ\n");
+    printf("4 - Р—РќРђРњР•РќРРўРћРЎРўР\n5 - РљРЈР›РРќРђР РРЇ\n6 - Р—РђР’Р•Р РЁРРўР¬ Р’Р’РћР”\n\n");
 
     for (int i = 0; i < 3; i++) NOTES[n_count].interests[i] = -1;
     int interest_count = 0;
     for (int i = 0; i < 3; i++) {
-        printf("\nВведите номер %d-го интереса (или 6 для завершения): ", i + 1);
+        printf("\nР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ %d-РіРѕ РёРЅС‚РµСЂРµСЃР° (РёР»Рё 6 РґР»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ): ", i + 1);
         int interest;
         scanf("%d", &interest);
         if (interest == 6) break;
@@ -113,80 +113,80 @@ char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake) {
         if (already_selected != 1) {
             NOTES[n_count].interests[interest_count] = (Interests)interest;
             interest_count++;
-            printf("Добавлен интерес: ");
+            printf("Р”РѕР±Р°РІР»РµРЅ РёРЅС‚РµСЂРµСЃ: ");
             switch (interest) {
-            case SPORT: printf("СПОРТ\n"); break;
-            case ANIMALS: printf("ЖИВОТНЫЕ\n"); break;
-            case FILMS: printf("ФИЛЬМЫ\n"); break;
-            case ART: printf("ИСКУССТВО\n"); break;
-            case CELEBRITIES: printf("ЗНАМЕНИТОСТИ\n"); break;
-            case COOKING: printf("КУЛИНАРИЯ\n"); break;
-            default: printf("Неизвестный выбор\n");
+            case SPORT: printf("РЎРџРћР Рў\n"); break;
+            case ANIMALS: printf("Р–РР’РћРўРќР«Р•\n"); break;
+            case FILMS: printf("Р¤РР›Р¬РњР«\n"); break;
+            case ART: printf("РРЎРљРЈРЎРЎРўР’Рћ\n"); break;
+            case CELEBRITIES: printf("Р—РќРђРњР•РќРРўРћРЎРўР\n"); break;
+            case COOKING: printf("РљРЈР›РРќРђР РРЇ\n"); break;
+            default: printf("РќРµРёР·РІРµСЃС‚РЅС‹Р№ РІС‹Р±РѕСЂ\n");
             }
         }
         else {
-            printf("Этот интерес уже выбран!\n");
+            printf("Р­С‚РѕС‚ РёРЅС‚РµСЂРµСЃ СѓР¶Рµ РІС‹Р±СЂР°РЅ!\n");
             i--;
         }
     }
     while (getchar() != '\n');
 
 
-    printf("\n~~ Дата регистрации ~~\n");
-    printf("\nВведите день: ");
+    printf("\n~~ Р”Р°С‚Р° СЂРµРіРёСЃС‚СЂР°С†РёРё ~~\n");
+    printf("\nР’РІРµРґРёС‚Рµ РґРµРЅСЊ: ");
     if (scanf("%d", &NOTES[n_count].date.day) != 1 || 1 > NOTES[n_count].date.day || NOTES[n_count].date.day > 31)
-        if (mis == 1) strcat(mistake, "ВНИМАНИЕ: Введен неккоректный день регистрации!\n");
+        if (mis == 1) strcat(mistake, "Р’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РґРµРЅСЊ СЂРµРіРёСЃС‚СЂР°С†РёРё!\n");
         else {
-            strcpy(mistake, "\nВНИМАНИЕ: Введен неккоректный день регистрации!\n");
+            strcpy(mistake, "\nР’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РґРµРЅСЊ СЂРµРіРёСЃС‚СЂР°С†РёРё!\n");
             mis = 1;
         }
     while (getchar() != '\n');
 
-    printf("\nВведите месяц: ");
+    printf("\nР’РІРµРґРёС‚Рµ РјРµСЃСЏС†: ");
     if (scanf("%d", &NOTES[n_count].date.month) != 1 || 1 > NOTES[n_count].date.month || NOTES[n_count].date.month > 12)
-        if (mis == 1) strcat(mistake, "ВНИМАНИЕ: Введен неккоректный месяц регистрации!\n");
+        if (mis == 1) strcat(mistake, "Р’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РјРµСЃСЏС† СЂРµРіРёСЃС‚СЂР°С†РёРё!\n");
         else {
-            strcpy(mistake, "\nВНИМАНИЕ: Введен неккоректный месяц регистрации!\n");
+            strcpy(mistake, "\nР’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РјРµСЃСЏС† СЂРµРіРёСЃС‚СЂР°С†РёРё!\n");
             mis = 1;
         }
     while (getchar() != '\n');
 
-    printf("\nВведите год: ");
+    printf("\nР’РІРµРґРёС‚Рµ РіРѕРґ: ");
     if (scanf("%d", &NOTES[n_count].date.year) != 1)
-        if (mis == 1) strcat(mistake, "ВНИМАНИЕ: Введен неккоректный год регистрации!\n");
+        if (mis == 1) strcat(mistake, "Р’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РіРѕРґ СЂРµРіРёСЃС‚СЂР°С†РёРё!\n");
         else {
-            strcpy(mistake, "\nВНИМАНИЕ: Введен неккоректный год регистрации\n");
+            strcpy(mistake, "\nР’РќРРњРђРќРР•: Р’РІРµРґРµРЅ РЅРµРєРєРѕСЂРµРєС‚РЅС‹Р№ РіРѕРґ СЂРµРіРёСЃС‚СЂР°С†РёРё\n");
             mis = 1;
         }
     while (getchar() != '\n');
 
 
-    printf("\n~~ Введите количество друзей: ");
+    printf("\n~~ Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№: ");
     if (scanf("%d", &NOTES[n_count].friends) != 1 || NOTES[n_count].friends < 0)
-        if (mis == 1) strcat(mistake, "ВНИМАНИЕ: Допущена ошибка в поле 'Количество друзей'!\n");
+        if (mis == 1) strcat(mistake, "Р’РќРРњРђРќРР•: Р”РѕРїСѓС‰РµРЅР° РѕС€РёР±РєР° РІ РїРѕР»Рµ 'РљРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№'!\n");
         else {
-            strcpy(mistake, "\nВНИМАНИЕ: Допущена ошибка в поле 'Количество друзей'!\n");
+            strcpy(mistake, "\nР’РќРРњРђРќРР•: Р”РѕРїСѓС‰РµРЅР° РѕС€РёР±РєР° РІ РїРѕР»Рµ 'РљРѕР»РёС‡РµСЃС‚РІРѕ РґСЂСѓР·РµР№'!\n");
             mis = 1;
         }
     while (getchar() != '\n');
 
 
-    printf("\n~~ Введите город: ");
+    printf("\n~~ Р’РІРµРґРёС‚Рµ РіРѕСЂРѕРґ: ");
     fgets(NOTES[n_count].city, sizeof(NOTES[n_count].city), stdin);
     len = strlen(NOTES[n_count].city);
     if (len > 0 && NOTES[n_count].city[len - 1] == '\n') {
         NOTES[n_count].city[len - 1] = '\0';
     }
 
-    printf("\n~~ Введите статус активности: ~~\n");
-    printf("0 - ОНЛАЙН\n");
-    printf("1 - ОФФЛАЙН\n");
-    printf("Введите номер статуса: ");
+    printf("\n~~ Р’РІРµРґРёС‚Рµ СЃС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё: ~~\n");
+    printf("0 - РћРќР›РђР™Рќ\n");
+    printf("1 - РћР¤Р¤Р›РђР™Рќ\n");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЃС‚Р°С‚СѓСЃР°: ");
 
     if (scanf("%d", &NOTES[n_count].status) != 1 || NOTES[n_count].status != ONLINE && NOTES[n_count].status != OFFLINE)
-        if (mis == 1) strcat(mistake, "ВНИМАНИЕ: Допущена ошибка в поле 'Статус активности'!\n");
+        if (mis == 1) strcat(mistake, "Р’РќРРњРђРќРР•: Р”РѕРїСѓС‰РµРЅР° РѕС€РёР±РєР° РІ РїРѕР»Рµ 'РЎС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё'!\n");
         else {
-            strcpy(mistake, "\nВНИМАНИЕ: Допущена ошибка в поле 'Статус активности'!\n");
+            strcpy(mistake, "\nР’РќРРњРђРќРР•: Р”РѕРїСѓС‰РµРЅР° РѕС€РёР±РєР° РІ РїРѕР»Рµ 'РЎС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё'!\n");
             mis = 1;
         }
     while (getchar() != '\n');

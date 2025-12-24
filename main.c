@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+п»ї#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
@@ -14,12 +14,12 @@ main() {
     int* found_count_ptr = &found_count;
     int* notes_count_ptr;
     notes_count_ptr = &notes_count;
-    printf("Введите размер базы данных: ");
+    printf("Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ Р±Р°Р·С‹ РґР°РЅРЅС‹С…: ");
     scanf("%d", &size);
 
     Social_Network* notes = (Social_Network*)(malloc(size * sizeof(Social_Network)));
     if (notes == NULL) {
-        printf("Ошибка выделения памяти!");
+        printf("РћС€РёР±РєР° РІС‹РґРµР»РµРЅРёСЏ РїР°РјСЏС‚Рё!");
         return -1;
     }
 
@@ -30,10 +30,10 @@ main() {
         switch (Menu()) {
         case 1:
             if (notes_count == 0) {
-                printf("\nНет записей для просмотра!\n");
+                printf("\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°!\n");
             }
             else {
-                printf("\n                             === ВСЕ ЗАПИСИ ===\n");
+                printf("\n                             === Р’РЎР• Р—РђРџРРЎР ===\n");
                 for (int i = 0; i < notes_count; i++) {
                     show_Note(notes, i);
                 }
@@ -45,42 +45,42 @@ main() {
                 char* result = add_NewNote(notes, notes_count, mistake);
                 if (strlen(mistake) > 0) {
                     printf("%s", mistake);
-                    printf("\nЗапись добавлена с ошибками! Настоятельно рекомендуется отредактировать!\n");
+                    printf("\nР—Р°РїРёСЃСЊ РґРѕР±Р°РІР»РµРЅР° СЃ РѕС€РёР±РєР°РјРё! РќР°СЃС‚РѕСЏС‚РµР»СЊРЅРѕ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ!\n");
                 }
-                else printf("\nЗапись успешно добавлена!\n");
+                else printf("\nР—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°!\n");
                 notes_count++;
-                printf("Всего записей: %d\n", notes_count);
+                printf("Р’СЃРµРіРѕ Р·Р°РїРёСЃРµР№: %d\n", notes_count);
             }
-            else printf("\n Достигнут максимальный лимит записей (%d)!\n", size);
+            else printf("\n Р”РѕСЃС‚РёРіРЅСѓС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ Р»РёРјРёС‚ Р·Р°РїРёСЃРµР№ (%d)!\n", size);
             break;
         case 3:
-            printf("Введите номер записи, которую хотите перезаписать (1-%d): ", notes_count);
+            printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ Р·Р°РїРёСЃРё, РєРѕС‚РѕСЂСѓСЋ С…РѕС‚РёС‚Рµ РїРµСЂРµР·Р°РїРёСЃР°С‚СЊ (1-%d): ", notes_count);
             int ind;
             if (scanf("%d", &ind) != 1 || ind > size) {
-                printf("\n Такой записи не сущесвтует!\n");
+                printf("\n РўР°РєРѕР№ Р·Р°РїРёСЃРё РЅРµ СЃСѓС‰РµСЃРІС‚СѓРµС‚!\n");
                 while (getchar() != '\n');
             }
             else {
                 while (getchar() != '\n');
-                char mistake[300] = "\nЗапись успешно перезаписана!\n";
+                char mistake[300] = "\nР—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РїРµСЂРµР·Р°РїРёСЃР°РЅР°!\n";
                 char* result = add_NewNote(notes, ind - 1, mistake);
                 printf("%s", result);
             }
             break;
         case 4:
             if (notes_count == 0) {
-                printf("\nНет записей для поиска!\n");
+                printf("\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РїРѕРёСЃРєР°!\n");
             }
             else {
                 char city[30];
-                printf("\nВведите город для поиска: ");
+                printf("\nР’РІРµРґРёС‚Рµ РіРѕСЂРѕРґ РґР»СЏ РїРѕРёСЃРєР°: ");
                 fgets(city, 30, stdin);
                 int len = strlen(city);
                 if (len > 0 && city[len - 1] == '\n') {
                     city[len - 1] = '\0';
                 }
-                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ГОРОДУ '%s' ===\n", city);
-                printf("Всего записей в базе: %d\n\n", notes_count);
+                printf("\n=== Р Р•Р—РЈР›Р¬РўРђРўР« РџРћРРЎРљРђ РџРћ Р“РћР РћР”РЈ '%s' ===\n", city);
+                printf("Р’СЃРµРіРѕ Р·Р°РїРёСЃРµР№ РІ Р±Р°Р·Рµ: %d\n\n", notes_count);
                 Social_Network* found_notes = single_search(notes, notes_count, city, found_count_ptr);
 
                 if (found_notes != NULL) {
@@ -92,41 +92,41 @@ main() {
             }
             break;
         case 5:
-            if (notes_count == 0) printf("\nНет записей для поиска!\n");
+            if (notes_count == 0) printf("\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РїРѕРёСЃРєР°!\n");
             else {
                 float age;
                 int interest;
 
                 while (1) {
-                    printf("\nВведите возраст: ");
+                    printf("\nР’РІРµРґРёС‚Рµ РІРѕР·СЂР°СЃС‚: ");
                     if (scanf("%f", &age) == 1 && age >= 0) {
                         while (getchar() != '\n');
                         break;
                     }
                     else {
-                        printf("Ошибка ввода! Пожалуйста, введите число.\n");
+                        printf("РћС€РёР±РєР° РІРІРѕРґР°! РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ.\n");
                         while (getchar() != '\n');
                     }
                 }
 
-                printf("\n~~ Список интересов:\n");
-                printf("0 - СПОРТ\n1 - ЖИВОТНЫЕ\n2 - ФИЛЬМЫ\n3 - ИСКУССТВО\n");
-                printf("4 - ЗНАМЕНИТОСТИ\n5 - КУЛИНАРИЯ\n\n");
+                printf("\n~~ РЎРїРёСЃРѕРє РёРЅС‚РµСЂРµСЃРѕРІ:\n");
+                printf("0 - РЎРџРћР Рў\n1 - Р–РР’РћРўРќР«Р•\n2 - Р¤РР›Р¬РњР«\n3 - РРЎРљРЈРЎРЎРўР’Рћ\n");
+                printf("4 - Р—РќРђРњР•РќРРўРћРЎРўР\n5 - РљРЈР›РРќРђР РРЇ\n\n");
 
                 while (1) {
-                    printf("\nВведите номер интереса: ");
+                    printf("\nР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РёРЅС‚РµСЂРµСЃР°: ");
                     if (scanf("%d", &interest) == 1 && interest >= 0 && interest <= 5) {
                         while (getchar() != '\n');
                         break;
                     }
                     else {
-                        printf("Ошибка ввода! Пожалуйста, введите число от 0 до 5.\n");
+                        printf("РћС€РёР±РєР° РІРІРѕРґР°! РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ РѕС‚ 0 РґРѕ 5.\n");
                         while (getchar() != '\n');
                     }
                 }
 
-                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ВОЗРАСТУ %d И ИНТЕРЕСУ ===\n", age);
-                printf("Всего записей в базе: %d\n\n", notes_count);
+                printf("\n=== Р Р•Р—РЈР›Р¬РўРђРўР« РџРћРРЎРљРђ РџРћ Р’РћР—Р РђРЎРўРЈ %d Р РРќРўР•Р Р•РЎРЈ ===\n", age);
+                printf("Р’СЃРµРіРѕ Р·Р°РїРёСЃРµР№ РІ Р±Р°Р·Рµ: %d\n\n", notes_count);
                 Social_Network* found_notes = comb_search(notes, notes_count, age, interest, found_count_ptr);
 
                 if (found_notes != NULL) {
@@ -137,62 +137,62 @@ main() {
             }
             break;
         case 6:
-            if (notes_count == 0) printf("\nНет записей для сортировки!\n");
+            if (notes_count == 0) printf("\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё!\n");
             else {
                 qsort(notes, notes_count, sizeof(Social_Network), compare);
-                printf("Записи успешно отосртированы!");
+                printf("Р—Р°РїРёСЃРё СѓСЃРїРµС€РЅРѕ РѕС‚РѕСЃСЂС‚РёСЂРѕРІР°РЅС‹!");
             }
             break;
         case 7:
-            if (notes_count == 0) printf("\nНет записей для сохранения в файл!\n");
+            if (notes_count == 0) printf("\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ С„Р°Р№Р»!\n");
             else if (saveToFile(notes, notes_count, fname) == -1)
-                printf("Ошибка открытия файла для записи\n");
-            else printf("Данные успешно сохранены в файл '%s'\n", fname);
+                printf("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° РґР»СЏ Р·Р°РїРёСЃРё\n");
+            else printf("Р”Р°РЅРЅС‹Рµ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р» '%s'\n", fname);
             break;
         case 8:
             loaded_count = loadFromFileCompactSimple(notes, notes_count_ptr, size, fname);
             switch (loaded_count) {
-            case -1: printf("Ошибка открытия файла '%s' для чтения!\n", fname);
-            case -2: printf("Ошибка чтения количества записей!\n");
-            case -3: printf("Недостаточно места в базе данных!\n");
+            case -1: printf("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р° '%s' РґР»СЏ С‡С‚РµРЅРёСЏ!\n", fname);
+            case -2: printf("РћС€РёР±РєР° С‡С‚РµРЅРёСЏ РєРѕР»РёС‡РµСЃС‚РІР° Р·Р°РїРёСЃРµР№!\n");
+            case -3: printf("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРµСЃС‚Р° РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…!\n");
             default:
                 notes_count += loaded_count;
-                printf("Загружено %d записей\n", loaded_count);
+                printf("Р—Р°РіСЂСѓР¶РµРЅРѕ %d Р·Р°РїРёСЃРµР№\n", loaded_count);
             }
             break;
         case 9:
             test_fill(notes, size);
             notes_count = size;
-            printf("\nБаза данных успешна заполнена тестовыми записями!\n");
+            printf("\nР‘Р°Р·Р° РґР°РЅРЅС‹С… СѓСЃРїРµС€РЅР° Р·Р°РїРѕР»РЅРµРЅР° С‚РµСЃС‚РѕРІС‹РјРё Р·Р°РїРёСЃСЏРјРё!\n");
             break;
         case 0:
-            printf("\nДо свидания!\n");
+            printf("\nР”Рѕ СЃРІРёРґР°РЅРёСЏ!\n");
             end = 0;
             break;
         default:
-            printf("\nНеверный ввод!\n");
+            printf("\nРќРµРІРµСЂРЅС‹Р№ РІРІРѕРґ!\n");
             break;
         };
 
         if (end == 0) break;
-        printf("\nПродолжить? (1 - да, 0 - нет): ");
+        printf("\nРџСЂРѕРґРѕР»Р¶РёС‚СЊ? (1 - РґР°, 0 - РЅРµС‚): ");
         scanf("%d", &end);
         while (getchar() != '\n');
 
         if (end != 0 && end != 1) {
             do {
-                printf("Получено неисзвестное значение. Пожалуйста, повторите ввод: ");
+                printf("РџРѕР»СѓС‡РµРЅРѕ РЅРµРёСЃР·РІРµСЃС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ: ");
                 scanf("%d", &end);
                 while (getchar() != '\n');
             } while (end != 0 && end != 1);
             if (end == 0) {
-                printf("До свидания!");
+                printf("Р”Рѕ СЃРІРёРґР°РЅРёСЏ!");
                 free(notes);
                 break;
             }
         }
         else if (end == 0) {
-            printf("До свидания!");
+            printf("Р”Рѕ СЃРІРёРґР°РЅРёСЏ!");
             break;
         }
     }
