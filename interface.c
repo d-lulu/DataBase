@@ -1,4 +1,8 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+﻿/* Лукьянова Алина, бТИИ-251 */
+/* Этот файл содержит все функции, отвечающие за взаимодействие с пользователем,
+а именно вывод информации на экран и получение ввода от пользователя. */
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h> 
 #include "social_network.h"
@@ -192,4 +196,39 @@ char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake) {
     while (getchar() != '\n');
 
     return mistake;
+}
+
+
+void show_search_results(Social_Network* NOTES, int* found_count) {
+
+    printf("Всего найдено записей: %d\n", *found_count);
+    for (int number = 0; number < *found_count; number++) {
+        printf("\n--- Найдена запись %d ---\n", number + 1);
+        printf("Имя: %s\n", NOTES[number].name);
+        printf("Возраст: %.1f\n", NOTES[number].age);
+        printf("Количество друзей: %d\n", NOTES[number].friends);
+        printf("Город: %s\n", NOTES[number].city);
+        printf("Статус: %s\n", NOTES[number].status == ONLINE ? "Онлайн" : "Оффлайн");
+        printf("Дата регистрации: %02d.%02d.%d\n",
+            NOTES[number].date.day, NOTES[number].date.month, NOTES[number].date.year);
+
+        printf("Интересы: ");
+        int has_interests = 0;
+        for (int j = 0; j < 3; j++) {
+            if (NOTES[number].interests[j] >= 0) {
+                if (has_interests != 0) printf(", ");
+                switch (NOTES[number].interests[j]) {
+                case SPORT: printf("Спорт"); break;
+                case ANIMALS: printf("Животные"); break;
+                case FILMS: printf("Фильмы"); break;
+                case ART: printf("Искусство"); break;
+                case CELEBRITIES: printf("Знаменитости"); break;
+                case COOKING: printf("Кулинария"); break;
+                }
+                has_interests = 1;
+            }
+        }
+        if (has_interests == 0) printf("Интересы отсутствуют");
+        printf("\n");
+    }
 }

@@ -1,4 +1,8 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+﻿/* Лукьянова Алина, бТИИ-251 */
+/* Этот файл содержит функции для обработки данных,
+а именно поиск, сортировка, работа с файлами и другие алгоритмы. */
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
@@ -151,41 +155,6 @@ int loadFromFileCompactSimple(Social_Network* NOTES, int* n_count, int max_size,
 
 
 
-void show_search_results(Social_Network* NOTES, int* found_count) {
-
-    for (int number = 0; number < *found_count; number++) {
-        printf("\n--- Найдена запись %d ---\n", number + 1);
-        printf("Имя: %s\n", NOTES[number].name);
-        printf("Возраст: %.1f\n", NOTES[number].age);
-        printf("Количество друзей: %d\n", NOTES[number].friends);
-        printf("Город: %s\n", NOTES[number].city);
-        printf("Статус: %s\n", NOTES[number].status == ONLINE ? "Онлайн" : "Оффлайн");
-        printf("Дата регистрации: %02d.%02d.%d\n",
-            NOTES[number].date.day, NOTES[number].date.month, NOTES[number].date.year);
-
-        printf("Интересы: ");
-        int has_interests = 0;
-        for (int j = 0; j < 3; j++) {
-            if (NOTES[number].interests[j] >= 0) {
-                if (has_interests != 0) printf(", ");
-                switch (NOTES[number].interests[j]) {
-                case SPORT: printf("Спорт"); break;
-                case ANIMALS: printf("Животные"); break;
-                case FILMS: printf("Фильмы"); break;
-                case ART: printf("Искусство"); break;
-                case CELEBRITIES: printf("Знаменитости"); break;
-                case COOKING: printf("Кулинария"); break;
-                }
-                has_interests = 1;
-            }
-        }
-        if (has_interests == 0) printf("Интересы отсутствуют");
-        printf("\n");
-    }
-}
-
-
-
 Social_Network* single_search(Social_Network* NOTES, int n_count, char* city, int* found_count) {
 
     for (int i = 0; i < n_count; i++) {
@@ -193,14 +162,11 @@ Social_Network* single_search(Social_Network* NOTES, int n_count, char* city, in
     }
 
     if (*found_count == 0) {
-        printf("Записей из города '%s' не найдено.\n", city);
         return NULL;
     }
     else {
-        printf("Всего найдено записей: %d\n", *found_count);
         Social_Network* singlfound_n = (Social_Network*)(malloc(*found_count * sizeof(Social_Network)));
         if (singlfound_n == NULL) {
-            printf("Ошибка выделения памяти для массива найденых записей!");
             return -1;
         }
 
@@ -233,15 +199,12 @@ Social_Network* comb_search(Social_Network* NOTES, int n_count, int age, int int
     }
 
     if (*found_count == 0) {
-        printf("Пользователей с возрастом %d и указанным интересом не найдено.\n", age);
         return NULL;
     }
     else {
-        printf("Всего найдено записей: %d\n", *found_count);
         Social_Network* combfound_n = (Social_Network*)malloc(*found_count * sizeof(Social_Network));
         if (combfound_n == NULL) {
-            printf("Ошибка выделения памяти для массива найденных записей!");
-            return NULL;
+            return -1;
         }
 
         int found_index = 0;

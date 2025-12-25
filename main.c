@@ -1,4 +1,6 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+﻿/* Лукьянова Алина, бТИИ-251 */
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> 
@@ -79,15 +81,19 @@ main() {
                 if (len > 0 && city[len - 1] == '\n') {
                     city[len - 1] = '\0';
                 }
-                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ГОРОДУ '%s' ===\n", city);
-                printf("Всего записей в базе: %d\n\n", notes_count);
-                Social_Network* found_notes = single_search(notes, notes_count, city, found_count_ptr);
+                if (single_search(notes, notes_count, city, found_count_ptr) == -1)
+                    printf("Ошибка выделения памяти для массива найденых записей!");
+                else {
+                    printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ГОРОДУ '%s' ===\n", city);
+                    printf("Всего записей в базе: %d\n\n", notes_count);
+                    Social_Network* found_notes = single_search(notes, notes_count, city, found_count_ptr);
+                    if (found_notes == NULL) printf("Записей из города '%s' не найдено.\n", city);
 
-                if (found_notes != NULL) {
-                    show_search_results(found_notes, found_count_ptr);
-                    free(found_notes);
+                    if (found_notes != NULL) {
+                        show_search_results(found_notes, found_count_ptr);
+                        free(found_notes);
+                    }
                 }
-
                 *found_count_ptr = 0;
             }
             break;
@@ -127,7 +133,11 @@ main() {
 
                 printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ВОЗРАСТУ %d И ИНТЕРЕСУ ===\n", age);
                 printf("Всего записей в базе: %d\n\n", notes_count);
+                if (comb_search(notes, notes_count, age, interest, found_count_ptr) == -1)
+                    printf("Ошибка выделения памяти для массива найденных записей!");
                 Social_Network* found_notes = comb_search(notes, notes_count, age, interest, found_count_ptr);
+                if (found_count == NULL) printf("Пользователей с возрастом %d и указанным интересом не найдено.\n", age);
+
 
                 if (found_notes != NULL) {
                     show_search_results(found_notes, found_count_ptr);
