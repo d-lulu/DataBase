@@ -75,32 +75,28 @@ main() {
             }
             break;
         case 4:
-            if (notes_count == 0) {
+            if (notes_count == 0) 
                 printf("\nНет записей для поиска!\n");
-            }
             else {
                 char city[30];
                 printf("\nВведите город для поиска: ");
                 fgets(city, 30, stdin);
                 int len = strlen(city);
-                if (len > 0 && city[len - 1] == '\n') {
+                if (len > 0 && city[len - 1] == '\n') 
                     city[len - 1] = '\0';
-                }
-                if (single_search(notes, notes_count, city, found_count_ptr) == -1)
-                    printf("Ошибка выделения памяти для массива найденых записей!");
-                else {
-                    printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ГОРОДУ '%s' ===\n", city);
-                    printf("Всего записей в базе: %d\n\n", notes_count);
-                    Social_Network* found_notes = single_search(notes, notes_count, city, found_count_ptr);
-                    if (found_notes == NULL) printf("Записей из города '%s' не найдено.\n", city);
+             
+                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ГОРОДУ '%s' ===\n", city);
+                printf("Всего записей в базе: %d\n\n", notes_count);
+                Social_Network* found_notes = single_search(notes, notes_count, city, found_count_ptr);
+                if (found_notes == NULL) printf("Записей из города '%s' не найдено.\n", city);
 
-                    if (found_notes != NULL) {
-                        show_search_results(found_notes, found_count_ptr);
-                        free(found_notes);
-                    }
+                if (found_notes != NULL) {
+                    for (int i = 0; i < *found_count_ptr; i++)
+                        show_Note(found_notes, i);
+                    free(found_notes);
                 }
-                *found_count_ptr = 0;
             }
+            *found_count_ptr = 0;
             break;
         case 5:
             if (notes_count == 0) printf("\nНет записей для поиска!\n");
@@ -138,14 +134,13 @@ main() {
 
                 printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ВОЗРАСТУ %d И ИНТЕРЕСУ ===\n", age);
                 printf("Всего записей в базе: %d\n\n", notes_count);
-                if (comb_search(notes, notes_count, age, interest, found_count_ptr) == -1)
-                    printf("Ошибка выделения памяти для массива найденных записей!");
                 Social_Network* found_notes = comb_search(notes, notes_count, age, interest, found_count_ptr);
                 if (found_count == NULL) printf("Пользователей с возрастом %d и указанным интересом не найдено.\n", age);
 
 
                 if (found_notes != NULL) {
-                    show_search_results(found_notes, found_count_ptr);
+                    for(int i = 0; i < *found_count_ptr; i++)
+                    show_Note(found_notes, i);
                     free(found_notes);
                 }
                 *found_count_ptr = 0;

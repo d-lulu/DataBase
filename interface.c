@@ -36,44 +36,6 @@ int Menu() {
 
 
 
-
-void show_Note(Social_Network* NOTES, int i) {
-
-    printf("\n--- Запись %d ---\n", i + 1);
-    printf("\n   --- ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ ---\n");
-    printf("Имя: %s\n", NOTES[i].name);
-    printf("Возраст: %.1f\n", NOTES[i].age);
-    printf("Интересы: ");
-    int has_interests = 0;
-    for (int j = 0; j < 3; j++) {
-        if (NOTES[i].interests[j] >= 0 && NOTES[i].interests[j] <= 5) {
-            if (has_interests != 0) printf(", ");
-            switch (NOTES[i].interests[j]) {
-            case SPORT: printf("Спорт"); break;
-            case ANIMALS: printf("Животные"); break;
-            case FILMS: printf("Фильмы"); break;
-            case ART: printf("Искусство"); break;
-            case CELEBRITIES: printf("Знаменитости"); break;
-            case COOKING: printf("Кулинария"); break;
-            default: printf("Было записано неизвестное значение");
-            }
-            has_interests = 1;
-        }
-    }
-    if (has_interests == 0) printf("Интересы отсутствуют");
-    printf("\n");
-
-    printf("Дата регистрации: %02d.%02d.%d\n", NOTES[i].date.day, NOTES[i].date.month, NOTES[i].date.year);
-    printf("Количество друзей: %d\n", NOTES[i].friends);
-    printf("Город: %s\n", NOTES[i].city);
-    printf("Статус: %s\n", NOTES[i].status == ONLINE ? "Онлайн" : "Оффлайн");
-    printf("====================================\n");
-}
-
-
-
-
-
 char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake) {
 
     int mis = 0;
@@ -199,36 +161,37 @@ char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake) {
 }
 
 
-void show_search_results(Social_Network* NOTES, int* found_count) {
 
-    printf("Всего найдено записей: %d\n", *found_count);
-    for (int number = 0; number < *found_count; number++) {
-        printf("\n--- Найдена запись %d ---\n", number + 1);
-        printf("Имя: %s\n", NOTES[number].name);
-        printf("Возраст: %.1f\n", NOTES[number].age);
-        printf("Количество друзей: %d\n", NOTES[number].friends);
-        printf("Город: %s\n", NOTES[number].city);
-        printf("Статус: %s\n", NOTES[number].status == ONLINE ? "Онлайн" : "Оффлайн");
-        printf("Дата регистрации: %02d.%02d.%d\n",
-            NOTES[number].date.day, NOTES[number].date.month, NOTES[number].date.year);
+void show_Note(Social_Network* NOTES, int i) {
 
-        printf("Интересы: ");
-        int has_interests = 0;
-        for (int j = 0; j < 3; j++) {
-            if (NOTES[number].interests[j] >= 0) {
-                if (has_interests != 0) printf(", ");
-                switch (NOTES[number].interests[j]) {
-                case SPORT: printf("Спорт"); break;
-                case ANIMALS: printf("Животные"); break;
-                case FILMS: printf("Фильмы"); break;
-                case ART: printf("Искусство"); break;
-                case CELEBRITIES: printf("Знаменитости"); break;
-                case COOKING: printf("Кулинария"); break;
-                }
-                has_interests = 1;
+    printf("\n--- Запись %d ---\n", i + 1);
+    printf("\n   --- ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ ---\n");
+    printf("Имя: %s\n", NOTES[i].name);
+    printf("Возраст: %.1f\n", NOTES[i].age);
+    printf("Интересы: ");
+    int has_interests = 0;
+    for (int j = 0; j < 3; j++) {
+        if (NOTES[i].interests[j] >= 0 && NOTES[i].interests[j] <= 5) {
+            if (has_interests != 0) printf(", ");
+            switch (NOTES[i].interests[j]) {
+            case SPORT: printf("Спорт"); break;
+            case ANIMALS: printf("Животные"); break;
+            case FILMS: printf("Фильмы"); break;
+            case ART: printf("Искусство"); break;
+            case CELEBRITIES: printf("Знаменитости"); break;
+            case COOKING: printf("Кулинария"); break;
+            default: printf("Было записано неизвестное значение");
             }
+            has_interests = 1;
         }
-        if (has_interests == 0) printf("Интересы отсутствуют");
-        printf("\n");
     }
+    if (has_interests == 0) printf("Интересы отсутствуют");
+    printf("\n");
+
+    printf("Дата регистрации: %02d.%02d.%d\n", NOTES[i].date.day, NOTES[i].date.month, NOTES[i].date.year);
+    printf("Количество друзей: %d\n", NOTES[i].friends);
+    printf("Город: %s\n", NOTES[i].city);
+    printf("Статус: %s\n", NOTES[i].status == ONLINE ? "Онлайн" : "Оффлайн");
+    printf("====================================\n");
 }
+

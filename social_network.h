@@ -62,13 +62,6 @@ void show_Note(Social_Network* NOTES, int i);
 char* add_NewNote(Social_Network* NOTES, int n_count, char* mistake);
 
 /**
- * Отображение результатов поиска пользователей
- * @param NOTES указатель на массив найденных записей
- * @param found_count количество найденных записей
- */
-void show_search_results(Social_Network* NOTES, int* found_count);
-
-/**
  * Поиск пользователей по городу проживания
  * @param NOTES указатель на массив всех записей
  * @param n_count общее количество записей

@@ -167,6 +167,7 @@ Social_Network* single_search(Social_Network* NOTES, int n_count, char* city, in
     else {
         Social_Network* singlfound_n = (Social_Network*)(malloc(*found_count * sizeof(Social_Network)));
         if (singlfound_n == NULL) {
+            printf("Ошибка выделения памяти для массива найденых записей!");
             return -1;
         }
 
@@ -204,6 +205,7 @@ Social_Network* comb_search(Social_Network* NOTES, int n_count, int age, int int
     else {
         Social_Network* combfound_n = (Social_Network*)malloc(*found_count * sizeof(Social_Network));
         if (combfound_n == NULL) {
+            printf("Ошибка выделения памяти для массива найденых записей!");
             return -1;
         }
 
