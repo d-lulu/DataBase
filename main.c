@@ -91,6 +91,7 @@ main() {
                 if (found_notes == NULL) printf("Записей из города '%s' не найдено.\n", city);
 
                 if (found_notes != NULL) {
+                    printf("Найдено записей: %d.\n", *found_count_ptr);
                     for (int i = 0; i < *found_count_ptr; i++)
                         show_Note(found_notes, i);
                     free(found_notes);
@@ -132,13 +133,14 @@ main() {
                     }
                 }
 
-                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ВОЗРАСТУ %d И ИНТЕРЕСУ ===\n", age);
+                printf("\n=== РЕЗУЛЬТАТЫ ПОИСКА ПО ВОЗРАСТУ %.1f И ИНТЕРЕСУ ПОД НОМЕРОМ %d ===\n", age, interest);
                 printf("Всего записей в базе: %d\n\n", notes_count);
                 Social_Network* found_notes = comb_search(notes, notes_count, age, interest, found_count_ptr);
                 if (found_count == NULL) printf("Пользователей с возрастом %d и указанным интересом не найдено.\n", age);
 
 
                 if (found_notes != NULL) {
+                    printf("Найдено записей: %d.\n", *found_count_ptr);
                     for(int i = 0; i < *found_count_ptr; i++)
                     show_Note(found_notes, i);
                     free(found_notes);

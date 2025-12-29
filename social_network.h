@@ -117,12 +117,5 @@ int compare(const void* a, const void* b);
  */
 void test_fill(Social_Network* NOTES, int test_count);
 
-/**
- * Генерация случайного числа в заданном диапазоне
- * @param a нижняя граница диапазона
- * @param b верхняя граница диапазона
- * @return случайное целое число в диапазоне [a, b]
- */
-int getRandomNumber(int a, int b);
 
 #endif

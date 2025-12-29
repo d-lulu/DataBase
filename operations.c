@@ -72,8 +72,7 @@ int saveToFile(Social_Network* NOTES, int n_count, char* fname) {
         fprintf(out, "%s;%.1f;%s;%d.%d.%d;%d;%s;%d\n",
             NOTES[i].name, NOTES[i].age, interests_str,
             NOTES[i].date.day, NOTES[i].date.month, NOTES[i].date.year,
-            NOTES[i].friends, NOTES[i].city,
-            NOTES[i].status == ONLINE ? "ONLINE" : "OFFLINE");
+            NOTES[i].friends, NOTES[i].city, NOTES[i].status);
     }
 
     fclose(out);
@@ -106,12 +105,12 @@ int loadFromFileCompactSimple(Social_Network* NOTES, int* n_count, int max_size,
 
     for (int i = 0; i < total_records; i++) {
         int idx = *n_count + loaded_count;
-        char name[50], interests_str[6], city[30], status_str[10];
+        char name[50], interests_str[6], city[30];
         float age;
-        int day, month, year, friends;
+        int day, month, year, friends, status;
 
-        if (fscanf(in, "%49[^;];%f;%5[^;];%d.%d.%d;%d;%29[^;];%9s\n\n",
-            name, &age, interests_str, &day, &month, &year, &friends, city, status_str) == 9) {
+        if (fscanf(in, "%49[^;];%f;%5[^;];%d.%d.%d;%d;%29[^;];%d\n\n",
+            name, &age, interests_str, &day, &month, &year, &friends, city, &status) == 9) {
 
             strcpy(NOTES[idx].name, name);
             NOTES[idx].age = age;
@@ -135,9 +134,8 @@ int loadFromFileCompactSimple(Social_Network* NOTES, int* n_count, int max_size,
             NOTES[idx].friends = friends;
             strcpy(NOTES[idx].city, city);
 
-            if (strcmp(status_str, "ONLINE") == 0 || strcmp(status_str, "0") == 0) {
+            if (status == 0) 
                 NOTES[idx].status = ONLINE;
-            }
             else NOTES[idx].status = OFFLINE;
 
             loaded_count++;
@@ -231,32 +229,31 @@ Social_Network* comb_search(Social_Network* NOTES, int n_count, int age, int int
 }
 
 
-
-int getRandomNumber(int a, int b) {
-    return rand() % (a - b + 1) + a;
-}
-
 void test_fill(Social_Network* NOTES, int size) {
 
     srand(time(NULL));
 
+    char* names[6] = { "Алина ", "Галина ", "Максим ", "Тамара ", "Данил ", "Мария " };
+    char* sernames[6] = { "Московская", "Кузнецова", "Петров", "Иванова", "Семенова", "Степашкин", };
+    char* cities[6] = { "Москва", "Санкт-Петербург", "Воронеж", "Екатеринбург", "Казань", "Ростов-на-Дону", };
+    int interest_count, ind1, ind2, ind;
+
     for (int i = 0; i < size; i++) {
 
-        char* names[6] = { "Алина ", "Галина ", "Максим ", "Тамара ", "Данил ", "Мария " };
-        char* sernames[6] = { "Московская", "Кузнецова", "Петров", "Иванова", "Семенова", "Степашкин", };
-        char* cities[6] = { "Москва", "Санкт-Петербург", "Воронеж", "Екатеринбург", "Казань", "Ростов-на-Дону", };
-        int ind1 = rand() % 6, ind2 = rand() % 6, ind = rand() % 6;
-
+        ind1 = rand() % 6, ind2 = rand() % 6, ind = rand() % 6;
         strcpy(NOTES[i].name, names[ind1]);
         strcat(NOTES[i].name, sernames[ind2]);
         strcpy(NOTES[i].city, cities[ind]);
-        NOTES[i].age = getRandomNumber(14, 60);
-        NOTES[i].interests[0] = getRandomNumber(0, 5);
-        NOTES[i].interests[1] = getRandomNumber(0, 5);
-        NOTES[i].interests[2] = getRandomNumber(0, 5);
-        NOTES[i].date.day = getRandomNumber(1, 31);
-        NOTES[i].date.month = getRandomNumber(1, 12);
-        NOTES[i].date.year = getRandomNumber(2000, 2025);
-        NOTES[i].friends = getRandomNumber(1, 1000);
+        NOTES[i].age = rand() % 47 + 14;
+        interest_count = rand() % 4;
+        for (int j = 0; j < interest_count; j++) {
+            NOTES[i].interests[j] = rand() % 6;
+     
+        }
+        NOTES[i].date.day = rand() % 31 + 1;
+        NOTES[i].date.month = rand() % 12 + 1;
+        NOTES[i].date.year = rand() % 26 + 2000;
+        NOTES[i].friends = rand() % 1000 + 1;
+        NOTES[i].status = rand() % 2;
     }
 }
