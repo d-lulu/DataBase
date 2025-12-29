@@ -210,17 +210,17 @@ Social_Network* comb_search(Social_Network* NOTES, int n_count, int age, int int
         }
 
         int found_index = 0;
-        for (int i = 0; i < n_count; i++) {
-            if ((int)NOTES[i].age == age) {
+        for (int j = 0; j < n_count; j++) {
+            if ((int)NOTES[j].age == age) {
                 int interest_found = 0;
                 for (int k = 0; k < 3; k++) {
-                    if (NOTES[i].interests[k] == interest) {
+                    if (NOTES[j].interests[k] == interest) {
                         interest_found = 1;
                         break;
                     }
                 }
                 if (interest_found == 1) {
-                    combfound_n[found_index] = NOTES[i];
+                    combfound_n[found_index] = NOTES[j];
                     found_index++;
                 }
             }
